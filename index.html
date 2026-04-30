@@ -6,104 +6,229 @@
     <title>FII Sentiment Pro | Intelligence Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blur-row {
+            filter: blur(4px);
+            user-select: none;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        
+        @keyframes glowing {
+            0% { box-shadow: 0 0 5px #10b981; }
+            50% { box-shadow: 0 0 20px #10b981; }
+            100% { box-shadow: 0 0 5px #10b981; }
+        }
+        .btn-glow {
+            animation: glowing 2s infinite;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-gray-100 font-sans">
 
+    <!-- Navbar -->
     <nav class="border-b border-gray-800 p-4 bg-gray-900 sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold text-emerald-400"><i class="fas fa-brain mr-2"></i>FII Sentiment <span class="text-white font-light">Pro</span></h1>
-            <div class="space-x-6 text-sm">
-                <a href="#" class="hover:text-emerald-400">Documentação API</a>
-                <button class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg font-bold transition">Assinar Plano Pro</button>
+            <div class="flex items-center">
+                <h1 class="text-xl font-bold text-emerald-400"><i class="fas fa-brain mr-2"></i>FII Sentiment <span class="text-white font-light">Pro</span></h1>
+            </div>
+            <div class="flex items-center space-x-6 text-sm">
+                <div class="flex items-center gap-2 text-emerald-500 font-bold bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-[10px] uppercase tracking-tighter">Lançamento em Breve</span>
+                </div>
             </div>
         </div>
     </nav>
 
     <main class="container mx-auto py-8 px-4">
         
+        <!-- Header -->
         <div class="mb-10 text-center">
-            <h2 class="text-3xl font-extrabold mb-2">Termômetro de Fatos Relevantes</h2>
+            <h2 class="text-3xl font-extrabold mb-2 bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">Termômetro de Fatos Relevantes</h2>
             <p class="text-gray-400 text-lg">Análise semântica via IA de documentos oficiais da CVM em tempo real.</p>
         </div>
 
+        <!-- Metric Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             <div class="bg-gray-800 p-6 rounded-xl border border-gray-700">
-                <h3 class="text-gray-400 text-sm font-semibold uppercase mb-2">Índice Geral IFIX</h3>
+                <h3 class="text-gray-400 text-sm font-semibold uppercase mb-2 text-xs">Índice Geral IFIX</h3>
                 <div class="flex items-center justify-between">
                     <span class="text-4xl font-bold text-yellow-400">5.8</span>
-                    <span class="text-xs bg-yellow-900 text-yellow-300 px-2 py-1 rounded">NEUTRO</span>
+                    <span class="text-[10px] bg-yellow-900/30 text-yellow-300 border border-yellow-700/50 px-2 py-1 rounded font-bold uppercase">Neutro</span>
                 </div>
             </div>
-            <div class="bg-gray-800 p-6 rounded-xl border border-emerald-900/50">
-                <h3 class="text-gray-400 text-sm font-semibold uppercase mb-2">Setor Logística</h3>
+            <div class="bg-gray-800 p-6 rounded-xl border border-emerald-900/50 shadow-[0_0_20px_rgba(16,185,129,0.05)]">
+                <h3 class="text-gray-400 text-sm font-semibold uppercase mb-2 text-xs">Setor Logística</h3>
                 <div class="flex items-center justify-between">
                     <span class="text-4xl font-bold text-emerald-400">8.2</span>
-                    <span class="text-xs bg-emerald-900 text-emerald-300 px-2 py-1 rounded">EUFORIA</span>
+                    <span class="text-[10px] bg-emerald-900/30 text-emerald-300 border border-emerald-700/50 px-2 py-1 rounded font-bold uppercase">Euforia</span>
                 </div>
             </div>
             <div class="bg-gray-800 p-6 rounded-xl border border-red-900/50">
-                <h3 class="text-gray-400 text-sm font-semibold uppercase mb-2">Setor Shoppings</h3>
+                <h3 class="text-gray-400 text-sm font-semibold uppercase mb-2 text-xs">Setor Shoppings</h3>
                 <div class="flex items-center justify-between">
                     <span class="text-4xl font-bold text-red-500">2.4</span>
-                    <span class="text-xs bg-red-900 text-red-300 px-2 py-1 rounded">PÂNICO</span>
+                    <span class="text-[10px] bg-red-900/30 text-red-300 border border-red-700/50 px-2 py-1 rounded font-bold uppercase">Pânico</span>
                 </div>
             </div>
         </div>
 
-        <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden relative">
-            <div class="p-4 border-b border-gray-700 flex justify-between items-center">
-                <h3 class="font-bold text-lg">Últimos Fatos Relevantes Processados</h3>
+        <!-- Tabela Principal -->
+        <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden relative shadow-2xl mb-20">
+            <div class="p-4 border-b border-gray-700 flex justify-between items-center bg-gray-800/50">
+                <h3 class="font-bold text-lg flex items-center gap-2">
+                    <i class="fas fa-list-ul text-emerald-400 text-sm"></i> 
+                    Últimos Eventos Processados
+                </h3>
                 <div class="flex gap-2">
-                    <button class="text-xs bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded cursor-not-allowed opacity-50" title="Apenas Plano Pro">Exportar CSV</button>
-                    <button class="text-xs bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded cursor-not-allowed opacity-50" title="Apenas Plano Pro">API JSON</button>
+                    <button class="text-[10px] uppercase font-bold text-gray-500 bg-gray-900/50 border border-gray-700 px-3 py-1 rounded cursor-not-allowed">Exportar</button>
+                    <button class="text-[10px] uppercase font-bold text-gray-500 bg-gray-900/50 border border-gray-700 px-3 py-1 rounded cursor-not-allowed">API</button>
                 </div>
             </div>
             
-            <table class="w-full text-left border-collapse">
-                <thead class="bg-gray-900/50 text-gray-400 text-xs uppercase">
-                    <tr>
-                        <th class="p-4">Ticker</th>
-                        <th class="p-4">Evento</th>
-                        <th class="p-4">Score IA</th>
-                        <th class="p-4">Análise Detalhada</th>
-                    </tr>
-                </thead>
-                <tbody class="text-sm">
-                    <tr class="border-b border-gray-700">
-                        <td class="p-4 font-bold">BTLG11</td>
-                        <td class="p-4">Aquisição de Ativo</td>
-                        <td class="p-4 text-emerald-400 font-mono">8.5</td>
-                        <td class="p-4 italic text-gray-500">Upgrade de rating por expansão...</td>
-                    </tr>
-                    <tr class="border-b border-gray-700 blur-sm select-none opacity-40">
-                        <td class="p-4 font-bold">VISC11</td>
-                        <td class="p-4">Revisional de Aluguel</td>
-                        <td class="p-4 font-mono">3.2</td>
-                        <td class="p-4 italic">Conteúdo restrito para assinantes...</td>
-                    </tr>
-                    <tr class="border-b border-gray-700 blur-sm select-none opacity-40">
-                        <td class="p-4 font-bold">KNIP11</td>
-                        <td class="p-4">Relatório Mensal</td>
-                        <td class="p-4 font-mono">5.0</td>
-                        <td class="p-4 italic">Conteúdo restrito para assinantes...</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="overflow-x-auto pb-72">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-gray-900/50 text-gray-500 text-[10px] uppercase tracking-wider">
+                        <tr>
+                            <th class="p-4 font-medium">Ticker</th>
+                            <th class="p-4 font-medium">Evento</th>
+                            <th class="p-4 font-medium">Score IA</th>
+                            <th class="p-4 font-medium">Análise Detalhada</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <!-- 5 Ativos Visíveis -->
+                        <tr class="border-b border-gray-700/50 hover:bg-gray-700/30 transition">
+                            <td class="p-4 font-bold text-emerald-400">BTLG11</td>
+                            <td class="p-4">Aquisição de Ativo</td>
+                            <td class="p-4 font-mono font-bold text-emerald-400">8.5</td>
+                            <td class="p-4 italic text-gray-400">Expansão estratégica em raio 30km de SP...</td>
+                        </tr>
+                        <tr class="border-b border-gray-700/50 hover:bg-gray-700/30 transition">
+                            <td class="p-4 font-bold text-emerald-400">HGLG11</td>
+                            <td class="p-4">Renovação Contratual</td>
+                            <td class="p-4 font-mono font-bold text-emerald-400">7.2</td>
+                            <td class="p-4 italic text-gray-400">Manutenção de inquilino AAA com reajuste...</td>
+                        </tr>
+                        <tr class="border-b border-gray-700/50 hover:bg-gray-700/30 transition">
+                            <td class="p-4 font-bold text-yellow-400">XPML11</td>
+                            <td class="p-4">Venda de Participação</td>
+                            <td class="p-4 font-mono font-bold text-yellow-400">6.8</td>
+                            <td class="p-4 italic text-gray-400">Reciclagem de capital com ganho relevante...</td>
+                        </tr>
+                        <tr class="border-b border-gray-700/50 hover:bg-gray-700/30 transition">
+                            <td class="p-4 font-bold text-yellow-400">HGBS11</td>
+                            <td class="p-4">Relatório Mensal</td>
+                            <td class="p-4 font-mono font-bold text-yellow-400">5.5</td>
+                            <td class="p-4 italic text-gray-400">Resultados operacionais em linha com guidance...</td>
+                        </tr>
+                        <tr class="border-b border-gray-700/50 hover:bg-gray-700/30 transition">
+                            <td class="p-4 font-bold text-red-400">VISC11</td>
+                            <td class="p-4">Revisional de Aluguel</td>
+                            <td class="p-4 font-mono font-bold text-red-400">4.2</td>
+                            <td class="p-4 italic text-gray-400">Revisional judicial impactando fluxo imediato...</td>
+                        </tr>
 
-            <div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-gray-900 to-transparent flex items-center justify-center">
-                <div class="text-center bg-gray-900 p-8 rounded-2xl border border-emerald-500 shadow-2xl">
-                    <h4 class="text-xl font-bold mb-2">Desbloqueie todos os dados</h4>
-                    <p class="text-gray-400 text-sm mb-4">Tenha acesso a 500+ FIIs, histórico completo e integração via API.</p>
-                    <button class="bg-emerald-600 hover:bg-emerald-500 px-8 py-3 rounded-full font-bold text-white transition">
-                        Ver Planos a partir de R$ 29,90/mês
-                    </button>
+                        <!-- Ativos Embaçados -->
+                        <tr class="border-b border-gray-700/50 blur-row">
+                            <td class="p-4 font-bold">KNIP11</td>
+                            <td class="p-4">Alocação de CRI</td>
+                            <td class="p-4 font-mono">6.1</td>
+                            <td class="p-4 italic text-gray-600">Conteúdo restrito...</td>
+                        </tr>
+                        <tr class="border-b border-gray-700/50 blur-row">
+                            <td class="p-4 font-bold">IRDM11</td>
+                            <td class="p-4">Inadimplência</td>
+                            <td class="p-4 font-mono">2.8</td>
+                            <td class="p-4 italic text-gray-600">Conteúdo restrito...</td>
+                        </tr>
+                        <tr class="border-b border-gray-700/50 blur-row">
+                            <td class="p-4 font-bold">MXRF11</td>
+                            <td class="p-4">Nova Emissão</td>
+                            <td class="p-4 font-mono">5.0</td>
+                            <td class="p-4 italic text-gray-600">Conteúdo restrito...</td>
+                        </tr>
+                        <tr class="border-b border-gray-700/50 blur-row">
+                            <td class="p-4 font-bold">HCTR11</td>
+                            <td class="p-4">Assembleia Geral</td>
+                            <td class="p-4 font-mono">3.4</td>
+                            <td class="p-4 italic text-gray-600">Conteúdo restrito...</td>
+                        </tr>
+                        <tr class="border-b border-gray-700/50 blur-row">
+                            <td class="p-4 font-bold">RBRR11</td>
+                            <td class="p-4">Amortização</td>
+                            <td class="p-4 font-mono">5.9</td>
+                            <td class="p-4 italic text-gray-600">Conteúdo restrito...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Paywall Overlay -->
+            <div class="absolute inset-x-0 bottom-0 h-[380px] bg-gradient-to-t from-gray-900 via-gray-900/98 to-transparent flex items-end justify-center pb-8 px-4">
+                <div class="glass-card p-6 md:p-10 rounded-[2.5rem] shadow-2xl max-w-xl w-full text-center relative border border-emerald-500/20">
+                    
+                    <div class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-3 py-1 rounded-full mb-4 border border-emerald-500/20 uppercase tracking-widest">
+                        <i class="fas fa-star text-[8px]"></i> Oferta de Lançamento
+                    </div>
+
+                    <h4 class="text-2xl md:text-3xl font-black mb-3 text-white italic">Seja um Membro Fundador</h4>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed max-w-md mx-auto">
+                        Garanta seu <span class="text-emerald-400 font-bold italic underline">acesso vitalício</span> com preço reduzido entrando na lista VIP agora.
+                    </p>
+                    
+                    <div class="flex flex-col items-center">
+                        <!-- Bloco de Preço Integrado -->
+                        <div class="flex items-center gap-6 mb-8 bg-gray-900/80 px-8 py-5 rounded-3xl border border-gray-700/50 relative">
+                            <!-- Badge de 50% integrado ao bloco de preço -->
+                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-[9px] font-black px-3 py-1 rounded-full shadow-lg border border-red-500">
+                                50% DE DESCONTO
+                            </div>
+
+                            <div class="text-left border-r border-gray-700/50 pr-6">
+                                <span class="text-gray-500 text-[9px] uppercase font-bold block mb-1">Padrão</span>
+                                <span class="text-gray-500 line-through text-lg font-bold italic">R$ 59,80</span>
+                            </div>
+                            <div class="text-left">
+                                <span class="text-emerald-500 text-[9px] uppercase font-bold block mb-1 tracking-wider">Membro VIP</span>
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-4xl font-black text-white italic">R$ 29,90</span>
+                                    <span class="text-gray-400 text-xs font-normal">/mês</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Formulário -->
+                        <div class="w-full max-w-md relative z-10">
+                            <div class="flex flex-col md:flex-row gap-3">
+                                <input type="email" placeholder="Seu e-mail profissional..." class="flex-1 bg-gray-800 border border-gray-700 rounded-full px-6 py-4 text-sm focus:outline-none focus:border-emerald-500 transition-all text-white placeholder:text-gray-600">
+                                <button class="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-8 py-4 rounded-full transition-all btn-glow whitespace-nowrap text-xs shadow-xl uppercase tracking-wider">
+                                    Quero meu Desconto
+                                </button>
+                            </div>
+                            <p class="text-[9px] text-gray-500 mt-4 flex items-center justify-center gap-2 opacity-70">
+                                <i class="fas fa-check-circle text-emerald-500/40"></i> 
+                                Vagas limitadas para o lote inaugural.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <footer class="mt-12 text-center text-gray-600 text-xs">
-            <p>Disclaimer: Os dados acima são processados por IA. Não constituem recomendação de investimento.</p>
-            <p class="mt-2">Fonte de Dados: CVM / B3</p>
+        <footer class="mt-12 text-center text-gray-600 text-[10px]">
+            <p class="uppercase tracking-widest mb-2 font-bold">FII Sentiment Pro <span class="text-emerald-500/20 ml-2">v.1.0</span></p>
+            <p>Disclaimer: Os dados acima são processados por IA experimental. Não constituem recomendação de investimento.</p>
         </footer>
     </main>
 
