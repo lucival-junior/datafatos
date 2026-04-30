@@ -3,78 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataFatos - Inteligência de Sentimento para FIIs</title>
+    <title>FII Sentiment Pro | Intelligence Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
-        .card-glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans">
+<body class="bg-gray-900 text-gray-100 font-sans">
 
-    <header class="gradient-bg py-20 px-6 text-center border-b border-slate-800">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
-            DataFatos
-        </h1>
-        <p class="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-10">
-            Antecipe o humor do mercado de FIIs. Analisamos documentos da CVM com Inteligência Artificial para entregar sentimentos precisos antes do fechamento.
-        </p>
-        
-        <div class="max-w-md mx-auto card-glass p-8 rounded-2xl">
-            <h3 class="text-lg font-semibold mb-4 text-emerald-400">Garanta acesso antecipado à versão Beta</h3>
-            <form action="#" method="POST" class="flex flex-col gap-4">
-                <input type="email" placeholder="Seu melhor e-mail" required 
-                    class="bg-slate-800 border border-slate-700 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <button type="submit" class="bg-blue-600 hover:bg-blue-500 transition-all text-white font-bold py-4 rounded-lg">
-                    Quero Receber os Relatórios
-                </button>
-            </form>
-            <p class="text-xs text-slate-500 mt-4">Junte-se a outros investidores. Sem spam.</p>
+    <nav class="border-b border-gray-800 p-4 bg-gray-900 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold text-emerald-400"><i class="fas fa-brain mr-2"></i>FII Sentiment <span class="text-white font-light">Pro</span></h1>
+            <div class="space-x-6 text-sm">
+                <a href="#" class="hover:text-emerald-400">Documentação API</a>
+                <button class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg font-bold transition">Assinar Plano Pro</button>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <section class="py-20 px-6 max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-12">Análise Semanal (Amostra)</h2>
-        <div class="overflow-x-auto rounded-xl border border-slate-800">
-            <table class="w-full text-left">
-                <thead class="bg-slate-800 text-slate-400 uppercase text-xs">
+    <main class="container mx-auto py-8 px-4">
+        
+        <div class="mb-10 text-center">
+            <h2 class="text-3xl font-extrabold mb-2">Termômetro de Fatos Relevantes</h2>
+            <p class="text-gray-400 text-lg">Análise semântica via IA de documentos oficiais da CVM em tempo real.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div class="bg-gray-800 p-6 rounded-xl border border-gray-700">
+                <h3 class="text-gray-400 text-sm font-semibold uppercase mb-2">Índice Geral IFIX</h3>
+                <div class="flex items-center justify-between">
+                    <span class="text-4xl font-bold text-yellow-400">5.8</span>
+                    <span class="text-xs bg-yellow-900 text-yellow-300 px-2 py-1 rounded">NEUTRO</span>
+                </div>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-xl border border-emerald-900/50">
+                <h3 class="text-gray-400 text-sm font-semibold uppercase mb-2">Setor Logística</h3>
+                <div class="flex items-center justify-between">
+                    <span class="text-4xl font-bold text-emerald-400">8.2</span>
+                    <span class="text-xs bg-emerald-900 text-emerald-300 px-2 py-1 rounded">EUFORIA</span>
+                </div>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-xl border border-red-900/50">
+                <h3 class="text-gray-400 text-sm font-semibold uppercase mb-2">Setor Shoppings</h3>
+                <div class="flex items-center justify-between">
+                    <span class="text-4xl font-bold text-red-500">2.4</span>
+                    <span class="text-xs bg-red-900 text-red-300 px-2 py-1 rounded">PÂNICO</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden relative">
+            <div class="p-4 border-b border-gray-700 flex justify-between items-center">
+                <h3 class="font-bold text-lg">Últimos Fatos Relevantes Processados</h3>
+                <div class="flex gap-2">
+                    <button class="text-xs bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded cursor-not-allowed opacity-50" title="Apenas Plano Pro">Exportar CSV</button>
+                    <button class="text-xs bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded cursor-not-allowed opacity-50" title="Apenas Plano Pro">API JSON</button>
+                </div>
+            </div>
+            
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-gray-900/50 text-gray-400 text-xs uppercase">
                     <tr>
-                        <th class="p-5">Ativo</th>
-                        <th class="p-5">Fato Relevante (Resumo)</th>
-                        <th class="p-5 text-center">Sentimento IA</th>
+                        <th class="p-4">Ticker</th>
+                        <th class="p-4">Evento</th>
+                        <th class="p-4">Score IA</th>
+                        <th class="p-4">Análise Detalhada</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-800">
-                    <tr>
-                        <td class="p-5 font-bold">HGLG11</td>
-                        <td class="p-5 text-slate-400">Venda de ativo logístico em Itupeva com ganho de capital de 15%.</td>
-                        <td class="p-5 text-center">
-                            <span class="bg-emerald-900/50 text-emerald-400 px-3 py-1 rounded-full text-xs font-bold border border-emerald-500/30">POSITIVO</span>
-                        </td>
+                <tbody class="text-sm">
+                    <tr class="border-b border-gray-700">
+                        <td class="p-4 font-bold">BTLG11</td>
+                        <td class="p-4">Aquisição de Ativo</td>
+                        <td class="p-4 text-emerald-400 font-mono">8.5</td>
+                        <td class="p-4 italic text-gray-500">Upgrade de rating por expansão...</td>
                     </tr>
-                    <tr>
-                        <td class="p-5 font-bold">KNRI11</td>
-                        <td class="p-5 text-slate-400">Revisão vacância: novo contrato de locação de 5 anos em SP.</td>
-                        <td class="p-5 text-center">
-                            <span class="bg-emerald-900/50 text-emerald-400 px-3 py-1 rounded-full text-xs font-bold border border-emerald-500/30">POSITIVO</span>
-                        </td>
+                    <tr class="border-b border-gray-700 blur-sm select-none opacity-40">
+                        <td class="p-4 font-bold">VISC11</td>
+                        <td class="p-4">Revisional de Aluguel</td>
+                        <td class="p-4 font-mono">3.2</td>
+                        <td class="p-4 italic">Conteúdo restrito para assinantes...</td>
                     </tr>
-                    <tr>
-                        <td class="p-5 font-bold">MXRF11</td>
-                        <td class="p-5 text-slate-400">Comunicado sobre subscrição de novas cotas (9ª emissão).</td>
-                        <td class="p-5 text-center">
-                            <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-xs font-bold border border-slate-500/30">NEUTRO</span>
-                        </td>
+                    <tr class="border-b border-gray-700 blur-sm select-none opacity-40">
+                        <td class="p-4 font-bold">KNIP11</td>
+                        <td class="p-4">Relatório Mensal</td>
+                        <td class="p-4 font-mono">5.0</td>
+                        <td class="p-4 italic">Conteúdo restrito para assinantes...</td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </section>
 
-    <footer class="py-10 text-center text-slate-600 border-t border-slate-800 text-sm">
-        <p>&copy; 2026 DataFatos. Inteligência de Dados Financeiros.</p>
-        <p class="mt-2">Belém, Pará - Brasil</p>
-    </footer>
+            <div class="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-gray-900 to-transparent flex items-center justify-center">
+                <div class="text-center bg-gray-900 p-8 rounded-2xl border border-emerald-500 shadow-2xl">
+                    <h4 class="text-xl font-bold mb-2">Desbloqueie todos os dados</h4>
+                    <p class="text-gray-400 text-sm mb-4">Tenha acesso a 500+ FIIs, histórico completo e integração via API.</p>
+                    <button class="bg-emerald-600 hover:bg-emerald-500 px-8 py-3 rounded-full font-bold text-white transition">
+                        Ver Planos a partir de R$ 29,90/mês
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-600 text-xs">
+            <p>Disclaimer: Os dados acima são processados por IA. Não constituem recomendação de investimento.</p>
+            <p class="mt-2">Fonte de Dados: CVM / B3</p>
+        </footer>
+    </main>
 
 </body>
 </html>
